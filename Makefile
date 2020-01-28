@@ -17,7 +17,8 @@ SRC	=	src/main.c \
 		src/my_strlen.c \
 		src/cd_f.c \
 		src/my_split.c \
-		src/count_space.c
+		src/count_space.c \
+		src/env_f.c
 
 CC	=	gcc
 

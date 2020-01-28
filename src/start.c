@@ -7,26 +7,20 @@
 
 #include "my.h"
 
-void multi_free(mshel_s *ms)
-{
-    free(ms->buffer);
-    free(ms->arg);
-    free(ms);
-}
-
-void fill_struct(mshel_s *ms)
+void fill_struct(mshel_s *ms, char **envp)
 {
     ms->buffer = malloc((100 + 1) * sizeof(char));
+    ms->envp = envp;
 }
 
 int start(int ac, char **av, char **envp)
 {
-    mshel_s *ms = malloc(sizeof(char *) * 1 + sizeof(char) + sizeof(int));
+    mshel_s *ms = malloc(sizeof(char *) * 2 + sizeof(char) + sizeof(int));
 
-    fill_struct(ms);
+    fill_struct(ms, envp);
     if (ac == 1)
         if (simple_cmd(ms) == CEOF)
             exit(SUCCESS);
-    multi_free(ms);
+    free(ms);
     return (SUCCESS);
 }

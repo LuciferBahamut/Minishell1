@@ -43,6 +43,7 @@ typedef struct mshel
     int re;
     char *buffer;
     char **arg;
+    char **envp;
 } mshel_s;
 
 int start(int ac, char **av, char **envp);
@@ -57,5 +58,6 @@ int my_strlen(char const *str);
 char **my_split(char *src);
 int cd_f(mshel_s *ms);
 int check_space(char *buffer);
+void env_f(mshel_s *ms);
 
 #endif

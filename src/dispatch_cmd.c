@@ -29,7 +29,7 @@ void dispatch_cmd(mshel_s *ms)
         break;
     case 2 : return (SUCCESS);
         break;
-    case 3 : return (SUCCESS);
+    case 3 : env_f(ms);
         break;
     case 4 : exit_f();
         break;
