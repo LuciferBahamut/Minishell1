@@ -8,9 +8,16 @@
 NAME	=	mysh
 
 SRC	=	src/main.c \
+		src/start.c \
 		src/simple_cmd.c \
 		src/my_putchar.c \
-		src/my_putstr.c
+		src/my_putstr.c \
+		src/dispatch_cmd.c \
+		src/check_command.c \
+		src/my_strlen.c \
+		src/cd_f.c \
+		src/my_split.c \
+		src/count_space.c
 
 CC	=	gcc
 

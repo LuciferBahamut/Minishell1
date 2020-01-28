@@ -7,12 +7,8 @@
 
 #include "my.h"
 
-int main(int ac, char **av)
+int main(int ac, char **av, char **envp)
 {
-    if (ac == 1)
-        if (simple_cmd() == CEOF)
-            return (SUCCESS);
-    if (ac >= 3)
-        return (ERROR);
+    start(ac, av, envp);
     return (SUCCESS);
 }
