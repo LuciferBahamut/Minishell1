@@ -20,7 +20,7 @@ int simple_cmd(mshel_s *ms)
         }
         break;
     }
-    ms->buffer = buffer;
+    ms->buffer = clear_space(buffer);
     for (int i = 0; ms->buffer[i] != '\0'; i++)
         if (ms->buffer[i] == '\n')
             ms->buffer[i] = '\0';

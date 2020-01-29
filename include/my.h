@@ -59,5 +59,6 @@ char **my_split(char *src);
 int cd_f(mshel_s *ms);
 int check_space(char *buffer);
 void env_f(mshel_s *ms);
+char *clear_space(char *bf);
 
 #endif
