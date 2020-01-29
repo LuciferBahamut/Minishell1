@@ -17,10 +17,12 @@ int start(int ac, char **av, char **envp)
 {
     mshel_s *ms = malloc(sizeof(char *) * 2 + sizeof(char) + sizeof(int));
 
+    if (ac != 1) {
+        free(ms);
+        exit(ERROR);}
     fill_struct(ms, envp);
-    if (ac == 1)
-        if (simple_cmd(ms) == CEOF)
-            exit(SUCCESS);
+    if (simple_cmd(ms) == CEOF)
+        exit(SUCCESS);
     free(ms);
     return (SUCCESS);
 }
