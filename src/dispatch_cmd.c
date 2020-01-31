@@ -13,7 +13,7 @@ void exit_f(void)
     exit(SUCCESS);
 }
 
-static void display_error(char *str)
+void display_error(char *str)
 {
     my_putstr_error(str);
     my_putstr_error(": ");
@@ -34,7 +34,6 @@ void dispatch_cmd(mshel_s *ms)
     case 4 : exit_f();
         break;
     case 5 : exe_bin(ms);
-        //display_error(ms->buffer);
         break;
     }
 }

@@ -30,6 +30,29 @@ char *my_getenv_path(char **envp, char *path)
     return (str);
 }
 
+void check_alias(mshel_s *ms)
+{
+    if (ms->arg[0][0] == 'l' && ms->arg[0][1] == 'l') {
+        ms->arg[0] = "ls";
+        ms->arg[1] = "-l";
+    }
+}
+
+int check_exist(char **paths, int j)
+{
+    int nbr = 0;
+
+    for (j = 0; paths[j]; j++)
+        nbr++;
+    for (j = 0; paths[j]; j++)
+        if (access(paths[j], F_OK) != -1)
+            break;
+    if (nbr == j)
+        return (ERROR);
+    else
+        return (j);
+}
+
 int exe_bin(mshel_s *ms)
 {
     char *path = my_getenv_path(ms->envp, "PATH");
@@ -38,13 +61,16 @@ int exe_bin(mshel_s *ms)
     pid_t pid = 0;
     char *const *arg = ms->arg;
 
+    check_alias(ms);
     for (int i = 0; paths[i]; i++)
         paths[i] = my_strcat(paths[i], ms->arg[0]);
-    for (j = 0; paths[j]; j++)
-        if (access(paths[j], F_OK) != -1)
-            break;
+    if ((j = check_exist(paths, j)) == ERROR) {
+        display_error(ms->arg[0]);
+        return (SUCCESS);
+    }
     if ((pid = fork()) == 0)
         execve(paths[j], arg, ms->envp);
     wait(&pid);
+    free(path);
     return (SUCCESS);
 }

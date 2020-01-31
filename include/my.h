@@ -70,5 +70,6 @@ char *my_strcat(char *dest, char *src);
 int exe_bin(mshel_s *ms);
 int setenv_f(mshel_s *ms);
 int unsetenv_f(mshel_s *ms);
+void display_error(char *str);
 
 #endif
