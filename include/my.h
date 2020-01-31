@@ -24,6 +24,9 @@
 
 #define CMDNF "Command not found.\n"
 #define CDER "cd: Too many arguments.\n"
+#define SETEER "setenv: Too many arguments.\n"
+#define USETEER "unsetenv: Too many arguments.\n"
+#define USETEER1 "unsetenv: Too few arguments.\n"
 
 #include <stdio.h>
 #include <sys/types.h>
@@ -65,5 +68,7 @@ void env_f(mshel_s *ms);
 char *clear_space(char *bf);
 char *my_strcat(char *dest, char *src);
 int exe_bin(mshel_s *ms);
+int setenv_f(mshel_s *ms);
+int unsetenv_f(mshel_s *ms);
 
 #endif

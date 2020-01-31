@@ -36,6 +36,7 @@ int exe_bin(mshel_s *ms)
     char **paths = my_split_path(path);
     int j = 0;
     pid_t pid = 0;
+    char *const *arg = ms->arg;
 
     for (int i = 0; paths[i]; i++)
         paths[i] = my_strcat(paths[i], ms->arg[0]);
@@ -43,7 +44,7 @@ int exe_bin(mshel_s *ms)
         if (access(paths[j], F_OK) != -1)
             break;
     if ((pid = fork()) == 0)
-        execve(paths[j], ms->arg[1], ms->envp);
+        execve(paths[j], arg, ms->envp);
     wait(&pid);
     return (SUCCESS);
 }

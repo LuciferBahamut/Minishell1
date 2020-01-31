@@ -21,7 +21,9 @@ SRC	=	src/main.c \
 		src/env_f.c \
 		src/clear_space.c \
 		src/exe_bin.c \
-		src/my_strcat.c
+		src/my_strcat.c \
+		src/setenv_f.c \
+		src/unsetenv_f.c
 
 CC	=	gcc
 

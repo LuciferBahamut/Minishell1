@@ -25,9 +25,9 @@ void dispatch_cmd(mshel_s *ms)
     switch(ms->re) {
     case 0 : cd_f(ms);
         break;
-    case 1 : return (SUCCESS);
+    case 1 : setenv_f(ms);
         break;
-    case 2 : return (SUCCESS);
+    case 2 : unsetenv_f(ms);
         break;
     case 3 : env_f(ms);
         break;
