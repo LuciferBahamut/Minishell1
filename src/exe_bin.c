@@ -7,16 +7,6 @@
 
 #include "my.h"
 
-int check_path(char *envp, char *path)
-{
-    for (int i = 0; path[i] != '\0'; i++)
-        if (path[i] != envp[i])
-            return (ERROR);
-        else
-            if (path[i + 1] == '\0')
-                return (SUCCESS);
-}
-
 char *my_getenv_path(char **envp, char *path)
 {
     char *str;
@@ -30,27 +20,23 @@ char *my_getenv_path(char **envp, char *path)
     return (str);
 }
 
-void check_alias(mshel_s *ms)
+int check_sig(int status)
 {
-    if (ms->arg[0][0] == 'l' && ms->arg[0][1] == 'l') {
-        ms->arg[0] = "ls";
-        ms->arg[1] = "-l";
+    if (WIFSIGNALED(status)) {
+        if (SIGFPE == status && WCOREDUMP(status)) {
+            my_putstr_error(SEGFAULTF2);
+            my_putstr_error(SEGFAULTF3);
+            return (SUCCESS);
+        }
+        if (WCOREDUMP(status)) {
+            my_putstr_error(SEGFAULT);
+            return (SUCCESS);
+        }
+        if (SIGFPE == status) {
+            my_putstr_error(SEGFAULTF);
+            return (SUCCESS);
+        }
     }
-}
-
-int check_exist(char **paths, int j)
-{
-    int nbr = 0;
-
-    for (j = 0; paths[j]; j++)
-        nbr++;
-    for (j = 0; paths[j]; j++)
-        if (access(paths[j], F_OK) != -1)
-            break;
-    if (nbr == j)
-        return (ERROR);
-    else
-        return (j);
 }
 
 int exe_bin(mshel_s *ms)
@@ -70,7 +56,10 @@ int exe_bin(mshel_s *ms)
     }
     if ((pid = fork()) == 0)
         execve(paths[j], arg, ms->envp);
-    wait(&pid);
-    free(path);
+    else {
+        wait(&ms->status);
+        check_sig(ms->status);
+        free(path);
+    }
     return (SUCCESS);
 }

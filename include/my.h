@@ -27,6 +27,10 @@
 #define SETEER "setenv: Too many arguments.\n"
 #define USETEER "unsetenv: Too many arguments.\n"
 #define USETEER1 "unsetenv: Too few arguments.\n"
+#define SEGFAULT "Segmentation fault (core dumped)\n"
+#define SEGFAULTF "Floating exeption (coredumped)\n"
+#define SEGFAULTF2 "Segmentation fault (core dumped) && Floating Point"
+#define SEGFAULTF3 "Floating exeption.\n"
 
 #include <stdio.h>
 #include <sys/types.h>
@@ -48,6 +52,7 @@ typedef struct mshel
     char *buffer;
     char **arg;
     char **envp;
+    int status;
 } mshel_s;
 
 int start(int ac, char **av, char **envp);
@@ -73,5 +78,8 @@ int setenv_f(mshel_s *ms);
 int unsetenv_f(mshel_s *ms);
 void display_error(char *str);
 int my_atoi(char const *str);
+int check_exist(char **paths, int j);
+void check_alias(mshel_s *ms);
+int check_path(char *envp, char *path);
 
 #endif

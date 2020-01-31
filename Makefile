@@ -24,7 +24,8 @@ SRC	=	src/main.c \
 		src/my_strcat.c \
 		src/setenv_f.c \
 		src/unsetenv_f.c \
-		src/my_atoi.c
+		src/my_atoi.c \
+		src/check_exe.c
 
 CC	=	gcc
 
