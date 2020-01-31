@@ -19,7 +19,9 @@ SRC	=	src/main.c \
 		src/my_split.c \
 		src/count_space.c \
 		src/env_f.c \
-		src/clear_space.c
+		src/clear_space.c \
+		src/exe_bin.c \
+		src/my_strcat.c
 
 CC	=	gcc
 

@@ -33,7 +33,8 @@ void dispatch_cmd(mshel_s *ms)
         break;
     case 4 : exit_f();
         break;
-    case 5 : display_error(ms->buffer);
+    case 5 : exe_bin(ms);
+        //display_error(ms->buffer);
         break;
     }
 }

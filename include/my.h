@@ -56,9 +56,13 @@ void dispatch_cmd(mshel_s *ms);
 int check_command(char *arg);
 int my_strlen(char const *str);
 char **my_split(char *src);
+char **my_split_path(char *src);
 int cd_f(mshel_s *ms);
 int check_space(char *buffer);
+int check_double_point(char *buffer);
 void env_f(mshel_s *ms);
 char *clear_space(char *bf);
+char *my_strcat(char *dest, char *src);
+int exe_bin(mshel_s *ms);
 
 #endif
