@@ -67,9 +67,11 @@ int check_double_point(char *buffer);
 void env_f(mshel_s *ms);
 char *clear_space(char *bf);
 char *my_strcat(char *dest, char *src);
+char *my_strcat2(char *dest, char *src);
 int exe_bin(mshel_s *ms);
 int setenv_f(mshel_s *ms);
 int unsetenv_f(mshel_s *ms);
 void display_error(char *str);
+int my_atoi(char const *str);
 
 #endif
