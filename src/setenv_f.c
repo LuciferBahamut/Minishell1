@@ -11,6 +11,10 @@ int setenv_f(mshel_s *ms)
 {
     int space = check_space(ms->buffer);
 
+    if (space == 0) {
+        env_f(ms);
+        return (SUCCESS);
+    }
     if (space > 3) {
         my_putstr_error(SETEER);
         return (SUCCESS);
