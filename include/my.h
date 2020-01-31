@@ -37,6 +37,7 @@
 #include <grp.h>
 #include <errno.h>
 #include <string.h>
+#include <sys/wait.h>
 
 typedef struct mshel
 {

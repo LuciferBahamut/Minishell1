@@ -44,5 +44,6 @@ int exe_bin(mshel_s *ms)
             break;
     if ((pid = fork()) == 0)
         execve(paths[j], ms->arg[1], ms->envp);
+    wait(&pid);
     return (SUCCESS);
 }
