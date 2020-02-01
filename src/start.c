@@ -20,7 +20,8 @@ int start(int ac, char **av, char **envp)
 
     if (ac != 1) {
         free(ms);
-        exit(ERROR);}
+        exit(ERROR);
+    }
     fill_struct(ms, envp);
     if (simple_cmd(ms) == CEOF)
         exit(SUCCESS);
