@@ -30,7 +30,11 @@ char **recup_line(char **env, char **tab, int nbr)
 
 char **replace_env(mshel_s *ms, char **envp, int i)
 {
-    if (my_atoi(ms->arg[3]) == 0)
+    if (check_space(ms->buffer) == 2) {
+        envp[i] = my_strcat2(ms->arg[1], ms->arg[2]);
+        return (envp);
+    }
+    else if (my_atoi(ms->arg[3]) == 0)
         return (ms->envp);
     else {
         envp[i] = my_strcat2(ms->arg[1], ms->arg[2]);
