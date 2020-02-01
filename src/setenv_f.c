@@ -11,7 +11,7 @@ char **fill_env(char **str, char **envp, int nbr)
 {
     envp = malloc(nbr + 1 * sizeof(char *));
     for (int i = 0; str[i]; i++) {
-        envp[i] = malloc(my_strlen(str[i]) + 1 * sizeof(char));
+        envp[i] = malloc((my_strlen(str[i]) + 1) * sizeof(char));
         envp[i] = str[i];
     }
     return (envp);
