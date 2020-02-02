@@ -17,19 +17,12 @@ char **fill_env(char **str, char **envp, int nbr)
     return (envp);
 }
 
-char **recup_line(char **env, char **tab, int nbr)
-{
-    tab = malloc(nbr + 1 * sizeof(char *));
-    for (int i = 0; env[i]; i++) {
-        tab[i] = malloc(25 * sizeof(char));
-        for (int j = 0; env[i][j] != '='; j++)
-            tab[i][j] = env[i][j];
-    }
-    return (tab);
-}
-
 char **replace_env(mshel_s *ms, char **envp, int i)
 {
+    if (check_space(ms->buffer) == 1) {
+        envp[i] = my_strcat2(ms->arg[1], "\0");
+        return (envp);
+    }
     if (check_space(ms->buffer) == 2) {
         envp[i] = my_strcat2(ms->arg[1], ms->arg[2]);
         return (envp);
@@ -42,23 +35,24 @@ char **replace_env(mshel_s *ms, char **envp, int i)
     }
 }
 
-char **setenv_f_b(mshel_s *ms, int nbr)
+char **setenv_f_b(mshel_s *ms, int nbr, int space)
 {
-    char **envp;
-    char **tab;
+    char **envp = fill_env(ms->envp, envp, nbr);
     int temp = -1;
 
-    envp = fill_env(ms->envp, envp, nbr);
-    tab = recup_line(ms->envp, tab, nbr);
     for (int i = 0; i != nbr; i++)
-        for (int j = 0; tab[i][j]; j++) {
-            if (tab[i][j] != ms->arg[1][j])
+        for (int j = 0; envp[i][j]; j++) {
+            if (envp[i][j] != ms->arg[1][j])
                 break;
-            if (tab[i][j] == ms->arg[1][j] && envp[i][j + 1] == '=')
+            if (envp[i][j] == ms->arg[1][j] && envp[i][j + 1] == '=')
                 temp = i;
         }
-    if (temp == -1)
-        envp[nbr] = my_strcat2(ms->arg[1], ms->arg[2]);
+    if (temp == -1) {
+        if (space == 1)
+            envp[nbr] = my_strcat2(ms->arg[1], "\0");
+        else
+            envp[nbr] = my_strcat2(ms->arg[1], ms->arg[2]);
+    }
     else
         envp = replace_env(ms, envp, temp);
     return (envp);
@@ -80,6 +74,6 @@ int setenv_f(mshel_s *ms)
     else {
         for (int i = 0; ms->envp[i]; i++)
             nbr++;
-        ms->envp = setenv_f_b(ms, nbr);
+        ms->envp = setenv_f_b(ms, nbr, space);
     }
 }

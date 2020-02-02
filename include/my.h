@@ -81,5 +81,7 @@ int my_atoi(char const *str);
 int check_exist(char **paths, int j);
 void check_alias(mshel_s *ms);
 int check_path(char *envp, char *path);
+char **fill_env(char **str, char **envp, int nbr);
+char *my_getenv_path(char **envp, char *path);
 
 #endif
