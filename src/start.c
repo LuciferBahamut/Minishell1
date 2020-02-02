@@ -7,10 +7,26 @@
 
 #include "my.h"
 
+char **fill_senv(char **envp)
+{
+    int i = 0;
+    char **str;
+
+    while (envp[i])
+        i++;
+    str = malloc(sizeof(char *) * i);
+    for (int j = 0; envp[j]; j++) {
+        str[j] = malloc((my_strlen(envp[j]) + 1) * sizeof(char));
+        for (int k = 0; envp[j][k] != '\0'; k++)
+            str[j][k] = envp[j][k];
+    }
+    return (str);
+}
+
 void fill_struct(mshel_s *ms, char **envp)
 {
     ms->buffer = malloc((100 + 1) * sizeof(char));
-    ms->envp = envp;
+    ms->envp = fill_senv(envp);
     ms->status = 0;
 }
 
