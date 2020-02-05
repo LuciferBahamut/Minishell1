@@ -22,7 +22,7 @@ void display_error(char *str)
 
 void dispatch_cmd(mshel_s *ms)
 {
-    switch(ms->re) {
+    switch (ms->re) {
     case 0 : cd_f(ms);
         break;
     case 1 : setenv_f(ms);

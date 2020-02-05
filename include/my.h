@@ -18,7 +18,7 @@
 #define GR "\e[1;32m"
 #define BLUE "\e[1;34m"
 #define YE "\e[1;33m"
-#define CMD BLUE"₪"YE"["CYAN"♜"RED"CMD"RES CYAN"♜"YE"]"BLUE"₪ "GR"→ "RES
+#define CMD BLUE"₪"YE"["RED"CMD"RES YE"]"BLUE"₪ "GR"→ "RES
 
 #define EXIT "exit\n"
 
