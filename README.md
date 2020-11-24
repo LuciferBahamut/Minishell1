@@ -7,10 +7,10 @@
 
 <p>Result : 35,3 %</p>
   <li>Basic tests : 60 % -- 3 / 5</li>
-  <li>path handling : 80 % -- 4 / 5</li>PSU
+  <li>path handling : 80 % -- 4 / 5</li>
   <li>path handling-eval : 100 % -- 5 / 5</li>
   <li>setenv and unsetenv : 50 % -- 1 / 2</li>
-  <li>setenv and unsetenv-eval : 50 % -- 1 / 2</li>PSUPSU
+  <li>setenv and unsetenv-eval : 50 % -- 1 / 2</li>
   <li>builtin cd : 33,3 % -- 1 / 3</li>
   <li>builtin cd-eval : 0 % -- 0 / 3</li>
   <li>line formatting (space and tab) : 37,5 % -- 3 / 8</li>
